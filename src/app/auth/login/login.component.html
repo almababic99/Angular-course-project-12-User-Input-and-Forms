@@ -7,18 +7,41 @@
   <div class="control-row">
     <div class="control no-margin">
       <label for="email">Email</label>
-      <input id="email" type="email" name="email" ngModel />
+      <input id="email" type="email" name="email" ngModel required email #email="ngModel" />
       <!-- ngModel binds the input field's value to the email field in the form model. -->
       <!-- name="email": This is required for form submission, and it matches the property email in the form data. -->
+      <!-- required is an HTML5 attribute that makes the email field a mandatory field. -->
+      <!-- email is another built-in validation type for the email input. It ensures that the value entered in the email field matches 
+       the pattern of a valid email address (e.g., user@example.com). -->
+      <!-- #email="ngModel": This creates a template reference variable named email that allows you to access the 
+       NgModel directive associated with this field. -->
+      <!-- this is checked in login.component.ts -->
     </div>
 
     <div class="control no-margin">
       <label for="password">Password</label>
-      <input id="password" type="password" name="password" ngModel />
+      <input id="password" type="password" name="password" ngModel required minlength="6" #password="ngModel" />
       <!-- ngModel binds the input field's value to the password field in the form model. -->
       <!-- name="password": This is required for form submission, and it matches the property password in the form data. -->
+      <!-- required is an HTML5 attribute that makes the password field a mandatory field. -->
+      <!-- minlength="6" is an HTML5 attribute that enforces a minimum length for the password input. 
+       In this case, the password must be at least 6 characters long.  -->
+      <!-- #password="ngModel": This creates a template reference variable named password that allows you to access the 
+       NgModel directive associated with this field. -->
+      <!-- this is checked in login.component.ts -->
     </div>
 
     <button class="button">Login</button>
   </div>
+
+  @if (email.touched && password.touched && form.form.invalid) {
+    <!-- touched is a property of ngModel that becomes true when the user has focused on the input field and then left it (the field has been "touched"). -->
+    <!-- This is important because you might not want to show validation messages before the user has interacted with the fields. 
+     Showing messages only after the user has touched the fields provides a better user experience. -->
+    <!-- form.form.invalid checks if the overall form is invalid. The form is considered invalid if one or more of the form fields are invalid 
+     (for example, if the email is not valid, or the password is too short). -->
+     <p class="control-error">  <!-- This error message will be shown to the user if both fields have been touched and the form is invalid. -->
+      Invalid values detected. Please check your input.
+    </p>
+  }
 </form>
