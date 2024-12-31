@@ -1,15 +1,22 @@
-<form>
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">  
+  <!-- The #form="ngForm" part assigns a local variable form to the form and binds it to the Angular NgForm directive, 
+   which manages the form's state (validity, value, etc.). -->
+  <!-- (ngSubmit)="onSubmit(form)": This triggers the onSubmit() method from login.component.ts when the form is submitted. -->
   <h2>Login</h2>
 
   <div class="control-row">
     <div class="control no-margin">
       <label for="email">Email</label>
-      <input id="email" type="email" />
+      <input id="email" type="email" name="email" ngModel />
+      <!-- ngModel binds the input field's value to the email field in the form model. -->
+      <!-- name="email": This is required for form submission, and it matches the property email in the form data. -->
     </div>
 
     <div class="control no-margin">
       <label for="password">Password</label>
-      <input id="password" type="password" />
+      <input id="password" type="password" name="password" ngModel />
+      <!-- ngModel binds the input field's value to the password field in the form model. -->
+      <!-- name="password": This is required for form submission, and it matches the property password in the form data. -->
     </div>
 
     <button class="button">Login</button>
