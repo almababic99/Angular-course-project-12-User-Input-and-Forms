@@ -73,7 +73,9 @@
  Reactive Forms are more suitable for complex or dynamic forms, offering greater control. 
  They are defined in the component using FormControl and FormGroup, and validation is done explicitly with Angular's Validators. 
  They are more flexible, allowing dynamic changes and easier testing, making them ideal for forms with advanced logic or large-scale applications. -->
- <form [formGroup]="form">  <!-- Bind the formGroup directive to the form instance in login.component.ts -->
+ <form [formGroup]="form" (ngSubmit)="onSubmit()">  
+  <!-- Bind the formGroup directive to the form instance in login.component.ts -->
+  <!-- (ngSubmit)="onSubmit()": This triggers the onSubmit() method from login.component.ts when the form is submitted. -->
   <h2>Login</h2>
 
   <div class="control-row">

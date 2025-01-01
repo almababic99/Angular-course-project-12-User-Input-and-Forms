@@ -104,7 +104,11 @@ export class LoginComponent {
     password: new FormControl('')  // A FormControl for password, initially empty.
   });
 
-  onSubmit() {
-    
+  onSubmit() {    
+    const enteredEmail = this.form.value.email; // This accesses the email value from the form.
+    const enteredPassword = this.form.value.password;  // This accesses the password value from the form.
+
+    console.log(enteredEmail);
+    console.log(enteredPassword);
   }
 }
