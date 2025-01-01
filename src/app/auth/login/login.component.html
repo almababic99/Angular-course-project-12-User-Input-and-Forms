@@ -1,13 +1,25 @@
-<form #form="ngForm" (ngSubmit)="onSubmit(form)">  
+<!-- TEMPLATE-DRIVEN FORMS:
+  Template-Driven Forms are best for simple forms, where the form structure and logic are defined mostly in the template using ngModel. 
+  They offer two-way data binding and automatic validation with HTML attributes like required and minlength. 
+  These forms are quick to set up but less flexible for dynamic content or complex logic. -->
+<!-- <form #form="ngForm" (ngSubmit)="onSubmit(form)"> -->
   <!-- The #form="ngForm" part assigns a local variable form to the form and binds it to the Angular NgForm directive, 
    which manages the form's state (validity, value, etc.). -->
   <!-- (ngSubmit)="onSubmit(form)": This triggers the onSubmit() method from login.component.ts when the form is submitted. -->
-  <h2>Login</h2>
+  <!-- <h2>Login</h2>
 
   <div class="control-row">
     <div class="control no-margin">
       <label for="email">Email</label>
-      <input id="email" type="email" name="email" ngModel required email #email="ngModel" />
+      <input
+        id="email"
+        type="email"
+        name="email"
+        ngModel
+        required
+        email
+        #email="ngModel"
+      /> -->
       <!-- ngModel binds the input field's value to the email field in the form model. -->
       <!-- name="email": This is required for form submission, and it matches the property email in the form data. -->
       <!-- required is an HTML5 attribute that makes the email field a mandatory field. -->
@@ -16,11 +28,19 @@
       <!-- #email="ngModel": This creates a template reference variable named email that allows you to access the 
        NgModel directive associated with this field. -->
       <!-- this is checked in login.component.ts -->
-    </div>
+    <!-- </div>
 
     <div class="control no-margin">
       <label for="password">Password</label>
-      <input id="password" type="password" name="password" ngModel required minlength="6" #password="ngModel" />
+      <input
+        id="password"
+        type="password"
+        name="password"
+        ngModel
+        required
+        minlength="6"
+        #password="ngModel"
+      /> -->
       <!-- ngModel binds the input field's value to the password field in the form model. -->
       <!-- name="password": This is required for form submission, and it matches the property password in the form data. -->
       <!-- required is an HTML5 attribute that makes the password field a mandatory field. -->
@@ -29,19 +49,47 @@
       <!-- #password="ngModel": This creates a template reference variable named password that allows you to access the 
        NgModel directive associated with this field. -->
       <!-- this is checked in login.component.ts -->
-    </div>
+    <!-- </div>
 
     <button class="button">Login</button>
   </div>
 
-  @if (email.touched && password.touched && form.form.invalid) {
-    <!-- touched is a property of ngModel that becomes true when the user has focused on the input field and then left it (the field has been "touched"). -->
-    <!-- This is important because you might not want to show validation messages before the user has interacted with the fields. 
+  @if (email.touched && password.touched && form.form.invalid) { -->
+  <!-- touched is a property of ngModel that becomes true when the user has focused on the input field and then left it (the field has been "touched"). -->
+  <!-- This is important because you might not want to show validation messages before the user has interacted with the fields. 
      Showing messages only after the user has touched the fields provides a better user experience. -->
-    <!-- form.form.invalid checks if the overall form is invalid. The form is considered invalid if one or more of the form fields are invalid 
+  <!-- form.form.invalid checks if the overall form is invalid. The form is considered invalid if one or more of the form fields are invalid 
      (for example, if the email is not valid, or the password is too short). -->
-     <p class="control-error">  <!-- This error message will be shown to the user if both fields have been touched and the form is invalid. -->
-      Invalid values detected. Please check your input.
-    </p>
+  <!-- <p class="control-error"> -->
+    <!-- This error message will be shown to the user if both fields have been touched and the form is invalid. -->
+    <!-- Invalid values detected. Please check your input.
+  </p>
   }
+</form> --> 
+
+
+
+<!-- REACTIVE FORMS:
+ Reactive Forms are more suitable for complex or dynamic forms, offering greater control. 
+ They are defined in the component using FormControl and FormGroup, and validation is done explicitly with Angular's Validators. 
+ They are more flexible, allowing dynamic changes and easier testing, making them ideal for forms with advanced logic or large-scale applications. -->
+ <form [formGroup]="form">  <!-- Bind the formGroup directive to the form instance in login.component.ts -->
+  <h2>Login</h2>
+
+  <div class="control-row">
+    <div class="control no-margin">
+      <label for="email">Email</label>
+      <!-- <input id="email" type="email" [formControl]="form.controls.email" /> -->
+      <input id="email" type="email" formControlName="email" />
+      <!-- Bind the input field to the email form control in login.component.ts -->
+    </div>
+
+    <div class="control no-margin">
+      <label for="password">Password</label>
+      <input id="password" type="password" formControlName="password" />
+      <!-- Bind the input field to the password form control in login.component.ts -->
+    </div>
+
+    <button class="button">Login</button>
+  </div>
 </form>
