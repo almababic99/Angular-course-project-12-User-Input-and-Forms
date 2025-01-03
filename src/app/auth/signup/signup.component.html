@@ -24,7 +24,8 @@
 
     <div class="control">
       <label for="confirm-password">Confirm Password</label>
-      <input id="confirm-password" type="password" name="confirm-password" />
+      <input id="confirm-password" type="password" name="confirm-password" formControlName="confirmPassword" />
+      <!-- The confirm password input field is linked to the confirm password control in the form from signup.component.ts using formControlName="confirmPassword". -->
     </div>
   </div>
 
@@ -34,12 +35,14 @@
     <div class="control-row">
       <div class="control">
         <label for="first-name">First Name</label>
-        <input type="text" id="first-name" name="first-name" />
+        <input type="text" id="first-name" name="first-name" formControlName="firstName" />
+        <!-- The first name input field is linked to the first name control in the form from signup.component.ts using formControlName="firstName". -->
       </div>
 
       <div class="control">
         <label for="last-name">Last Name</label>
-        <input type="text" id="last-name" name="last-name" />
+        <input type="text" id="last-name" name="last-name" formControlName="lastName" />
+        <!-- The last name input field is linked to the last name control in the form from signup.component.ts using formControlName="lastName". -->
       </div>
     </div>
 
@@ -49,24 +52,28 @@
       <div class="control-row">
         <div class="control">
           <label for="street">Street</label>
-          <input type="text" id="street" name="street" />
+          <input type="text" id="street" name="street" formControlName="street" />
+          <!-- The street input field is linked to the street control in the form from signup.component.ts using formControlName="street". -->
         </div>
 
         <div class="control">
           <label for="number">Number</label>
-          <input type="text" id="number" name="number" />
+          <input type="text" id="number" name="number" formControlName="number" />
+          <!-- The number input field is linked to the number control in the form from signup.component.ts using formControlName="number". -->
         </div>
       </div>
 
       <div class="control-row">
         <div class="control">
           <label for="postal-code">Postal Code</label>
-          <input type="text" id="postal-code" name="postal-code" />
+          <input type="text" id="postal-code" name="postal-code" formControlName="postalCode" />
+          <!-- The postal code input field is linked to the postal code control in the form from signup.component.ts using formControlName="postalCode". -->
         </div>
 
         <div class="control">
           <label for="city">City</label>
-          <input type="text" id="city" name="city" />
+          <input type="text" id="city" name="city" formControlName="city" />
+          <!-- The city input field is linked to the city control in the form from signup.component.ts using formControlName="city". -->
         </div>
       </div>
     </fieldset>
@@ -77,7 +84,8 @@
   <div class="control-row">
     <div class="control">
       <label for="role">What best describes your role?</label>
-      <select id="role" name="role">
+      <select id="role" name="role" formControlName="role">
+        <!-- The role input field is linked to the role control in the form from signup.component.ts using formControlName="role". -->
         <option value="student">Student</option>
         <option value="teacher">Teacher</option>
         <option value="employee">Employee</option>
@@ -95,7 +103,8 @@
     </div>
 
     <div class="control">
-      <input type="checkbox" id="friend" name="acquisition" value="friend" />
+      <input type="checkbox" id="friend" name="acquisition" value="friend" formControlName="agree" />
+      <!-- The agree input field is linked to the agree control in the form from signup.component.ts using formControlName="agree". -->
       <label for="friend">Referred by friend</label>
     </div>
 
