@@ -97,21 +97,24 @@
     </div>
   </div>
 
-  <fieldset>
+  <fieldset formArrayName="source">
+    <!-- formArrayName="source" binds the FormArray that was defined in the signup.component.ts to the <fieldset> element. -->
     <legend>How did you find us?</legend>
     <div class="control">
-      <input type="checkbox" id="google" name="acquisition" value="google" />
+      <input type="checkbox" id="google" name="acquisition" value="google" formControlName="0" />
+      <!-- formControlName="0" connects this checkbox input to the first control in the source array in signup.component.ts -->
       <label for="google">Google</label>
     </div>
 
     <div class="control">
-      <input type="checkbox" id="friend" name="acquisition" value="friend" formControlName="agree" />
-      <!-- The agree input field is linked to the agree control in the form from signup.component.ts using formControlName="agree". -->
+      <input type="checkbox" id="friend" name="acquisition" value="friend" formControlName="1" />
+      <!-- formControlName="1" connects this checkbox input to the second control in the source array in signup.component.ts -->
       <label for="friend">Referred by friend</label>
     </div>
 
     <div class="control">
-      <input type="checkbox" id="other" name="acquisition" value="other" />
+      <input type="checkbox" id="other" name="acquisition" value="other" formControlName="2" />
+      <!-- formControlName="2" connects this checkbox input to the third control in the source array in signup.component.ts -->
       <label for="other">Other</label>
     </div>
   </fieldset>
@@ -119,7 +122,8 @@
   <div class="control-row">
     <div class="control">
       <label for="terms-and-conditions">
-        <input type="checkbox" id="terms-and-conditions" name="terms" />
+        <input type="checkbox" id="terms-and-conditions" name="terms" formControlName="agree" />
+        <!-- The agree input field is linked to the agree control in the form from signup.component.ts using formControlName="agree". -->
         I agree to the terms and conditions
       </label>
     </div>

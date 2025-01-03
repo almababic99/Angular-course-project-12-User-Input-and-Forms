@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -51,6 +51,13 @@ export class SignupComponent {
       // Initially it is set to "student"
       validators: [Validators.required]   // It must not be empty (Validators.required).
     }),
+    source: new FormArray([
+      // FormArray is used for handling multiple form controls that are part of an array (like a group of checkboxes). 
+      // In this case, each checkbox corresponds to an option for how the user found the site (Google, Friend, or Other).
+      new FormControl(false),
+      new FormControl(false),
+      new FormControl(false),
+    ]),
     agree: new FormControl(false, {   // This FormControl is for the agree checkbox field. 
       // This FormControl represents a checkbox to agree to terms and conditions. Initially, the value is false, meaning unchecked.
       // Validators.required will ensure the user checks this checkbox before submitting the form.
