@@ -134,4 +134,10 @@
     <!-- A "Reset" button that clears the form data (using the onReset() method from signup.component.ts). -->
     <button type="submit" class="button">Sign up</button>
   </p>
+
+  @if (form.touched && form.invalid) {
+    <p class="control-error">
+      Invalid form - please check your input data.
+    </p>
+  }
 </form>

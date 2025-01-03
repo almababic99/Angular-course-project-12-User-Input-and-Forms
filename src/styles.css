@@ -173,16 +173,13 @@ hr {
   color: #869999;
 }
 
+[formgroupname].ng-invalid.ng-touched.ng-dirty label,
 .control:has(.ng-invalid.ng-touched.ng-dirty) label {
   color: #f98b75;
 }
-/* If a user has interacted with (touched) an invalid field and modified its value (dirty), the associated label will change its color 
-to #f98b75, signaling that the input is invalid. */
 
+[formgroupname].ng-invalid.ng-touched.ng-dirty input,
 input.ng-invalid.ng-touched.ng-dirty {
   background-color: #fbdcd6;
   border-color: #f84e2c;
 }
-/* When the input field has been modified by the user, and it does not meet the validation rules (e.g., the user has entered an invalid email 
-address), the input's background color will change to light pink, and the border will become reddish-orange. 
-This highlights the invalid state to the user. */
