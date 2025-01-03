@@ -94,4 +94,12 @@
 
     <button class="button">Login</button>
   </div>
+
+  @if (emailIsInvalid) {  <!-- emailIsInvalid is implemented in login.component.ts -->
+    <p class="control-error">Please enter a valid email address.</p>
+  }
+
+  @if (passwordIsInvalid) {  <!-- passwordIsInvalid is implemented in login.component.ts -->
+    <p class="control-error">Please enter a valid password (at least 6 characters long).</p>
+  }
 </form>

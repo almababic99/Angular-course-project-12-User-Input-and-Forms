@@ -88,7 +88,7 @@
 // They are defined in the component using FormControl and FormGroup, and validation is done explicitly with Angular's Validators. 
 // They are more flexible, allowing dynamic changes and easier testing, making them ideal for forms with advanced logic or large-scale applications.
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -100,9 +100,33 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 export class LoginComponent {
   // Creating a form group with two form controls (email and password).
   form = new FormGroup({
-    email: new FormControl(''),  // A FormControl for email, initially empty.
-    password: new FormControl('')  // A FormControl for password, initially empty.
+    email: new FormControl('', {
+      validators: [ Validators.required, Validators.email ],
+    }),  
+    // A FormControl for email, initially empty.
+    // validators ensure the email field is both required (not empty) and is in a valid email format..
+    password: new FormControl('', {
+      validators: [ Validators.required, Validators.minLength(6) ],
+    })  
+    // A FormControl for password, initially empty.
+    // validators ensure the password field is both required (not empty) and has a minimum length of 6 characters.
   });
+
+  get emailIsInvalid() {
+    return (
+      this.form.controls.email.touched && // Checks if the email input has been touched.
+      this.form.controls.email.dirty && // Checks if the email input's value has been modified (i.e., the user has typed something in the field).
+      this.form.controls.email.invalid // Checks if the email input has failed validation (e.g., if it is empty or not in a valid email format).
+    );
+  }
+
+  get passwordIsInvalid() {
+    return (
+      this.form.controls.password.touched && // Checks if the password input has been touched.
+      this.form.controls.password.dirty && // Checks if the password input's value has been modified (i.e., the user has typed something in the field).
+      this.form.controls.password.invalid // Checks if the password input has failed validation (e.g., if it's empty or shorter than 6 characters).
+    );
+  }
 
   onSubmit() {    
     const enteredEmail = this.form.value.email; // This accesses the email value from the form.
