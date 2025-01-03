@@ -88,7 +88,18 @@
 // They are defined in the component using FormControl and FormGroup, and validation is done explicitly with Angular's Validators. 
 // They are more flexible, allowing dynamic changes and easier testing, making them ideal for forms with advanced logic or large-scale applications.
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+
+function mustContainQuestionMark(control: AbstractControl) {
+  if (control.value.includes('?')) {
+    return null;
+  }
+  return { doesNotContainQuestionMark: true };
+}
+// mustContainQuestionMark is a Custom Validator which ensures that the password must contain at least one question mark (?). 
+// If the password (control.value) includes a question mark (?), it returns null, meaning no validation error.
+// If the password does not include a question mark (?), it returns an error object { doesNotContainQuestionMark: true }. 
+// This object signals that the validation failed and indicates that the password doesn't contain the required question mark.
 
 @Component({
   selector: 'app-login',
@@ -106,10 +117,11 @@ export class LoginComponent {
     // A FormControl for email, initially empty.
     // validators ensure the email field is both required (not empty) and is in a valid email format..
     password: new FormControl('', {
-      validators: [ Validators.required, Validators.minLength(6) ],
+      validators: [ Validators.required, Validators.minLength(6), mustContainQuestionMark ],
     })  
     // A FormControl for password, initially empty.
-    // validators ensure the password field is both required (not empty) and has a minimum length of 6 characters.
+    // validators ensure the password field is both required (not empty) and has a minimum length of 6 characters and 
+    // mustContainQuestionMark: Ensures the password contains at least one question mark (?).
   });
 
   get emailIsInvalid() {
