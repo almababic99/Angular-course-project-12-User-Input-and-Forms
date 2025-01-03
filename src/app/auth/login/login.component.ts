@@ -89,6 +89,7 @@
 // They are more flexible, allowing dynamic changes and easier testing, making them ideal for forms with advanced logic or large-scale applications.
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { of } from 'rxjs';
 
 function mustContainQuestionMark(control: AbstractControl) {
   if (control.value.includes('?')) {
@@ -100,6 +101,18 @@ function mustContainQuestionMark(control: AbstractControl) {
 // If the password (control.value) includes a question mark (?), it returns null, meaning no validation error.
 // If the password does not include a question mark (?), it returns an error object { doesNotContainQuestionMark: true }. 
 // This object signals that the validation failed and indicates that the password doesn't contain the required question mark.
+
+function emailIsUnique(control: AbstractControl) {
+  if (control.value !== 'test2@example.com') {
+    return of(null);
+  }
+  return of({ notUnique: true });
+}
+// emailIsUnique is a Async Validator that checks if the email value provided by the user is equal to 'test2@example.com'.
+// If the email is not 'test2@example.com', it returns of(null), which signifies that there is no validation error (the email is unique).
+// If the email is 'test2@example.com', it returns of({ notUnique: true }), indicating that the email is not unique and validation has failed.
+// of() function from the RxJS library is used to return an observable. This is typical for asynchronous validators, which must return an observable.
+// Returning null means there's no issue with the email, while returning an object ({ notUnique: true }) signals a validation failure.
 
 @Component({
   selector: 'app-login',
@@ -113,9 +126,11 @@ export class LoginComponent {
   form = new FormGroup({
     email: new FormControl('', {
       validators: [ Validators.required, Validators.email ],
+      asyncValidators: [emailIsUnique],
     }),  
     // A FormControl for email, initially empty.
-    // validators ensure the email field is both required (not empty) and is in a valid email format..
+    // validators ensure the email field is both required (not empty) and is in a valid email format.
+    // asyncValidators: emailIsUnique function is called when the form is validated, and it checks if the email is unique.
     password: new FormControl('', {
       validators: [ Validators.required, Validators.minLength(6), mustContainQuestionMark ],
     })  
