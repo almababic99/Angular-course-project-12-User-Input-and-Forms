@@ -14,13 +14,16 @@ export class SignupComponent {
       validators: [Validators.required, Validators.email]
       // Validators.required ensures that the field is not empty and Validators.email ensures that the value is a valid email address.
     }),
-    password: new FormControl('', {  // This FormControl is for the password field. 
-      validators: [Validators.required, Validators.minLength(6)]
-      // Validators.required ensures that the field is not empty and Validators.minLength(6) ensures the password is at least 6 characters long.
-    }),
-    confirmPassword: new FormControl('', {  // This FormControl is for the confirm password field. 
-      validators: [Validators.required, Validators.minLength(6)]
-      // Validators.required ensures that the field is not empty and Validators.minLength(6) ensures the password is at least 6 characters long.
+    // Nested form group for password and confirm password:
+    passwords: new FormGroup({
+      password: new FormControl('', {  // This FormControl is for the password field. 
+        validators: [Validators.required, Validators.minLength(6)]
+        // Validators.required ensures that the field is not empty and Validators.minLength(6) ensures the password is at least 6 characters long.
+      }),
+      confirmPassword: new FormControl('', {  // This FormControl is for the confirm password field. 
+        validators: [Validators.required, Validators.minLength(6)]
+        // Validators.required ensures that the field is not empty and Validators.minLength(6) ensures the password is at least 6 characters long.
+      }),
     }),
     firstName: new FormControl('', {  // This FormControl is for the first name field. 
       validators: [Validators.required]   // It must not be empty (Validators.required).
@@ -28,17 +31,20 @@ export class SignupComponent {
     lastName: new FormControl('', {   // This FormControl is for the last name field. 
       validators: [Validators.required]   // It must not be empty (Validators.required).
     }),
-    street: new FormControl('', {   // This FormControl is for the street field. 
-      validators: [Validators.required]   // It must not be empty (Validators.required).
-    }),
-    number: new FormControl('', {    // This FormControl is for the number field. 
-      validators: [Validators.required]   // It must not be empty (Validators.required).
-    }),
-    postalCode: new FormControl('', {   // This FormControl is for the postal code field. 
-      validators: [Validators.required]   // It must not be empty (Validators.required).
-    }),
-    city: new FormControl('', {    // This FormControl is for the city field. 
-      validators: [Validators.required]   // It must not be empty (Validators.required).
+    // Nested form group for street, number, postal code and city:
+    address: new FormGroup({
+      street: new FormControl('', {   // This FormControl is for the street field. 
+        validators: [Validators.required]   // It must not be empty (Validators.required).
+      }),
+      number: new FormControl('', {    // This FormControl is for the number field. 
+        validators: [Validators.required]   // It must not be empty (Validators.required).
+      }),
+      postalCode: new FormControl('', {   // This FormControl is for the postal code field. 
+        validators: [Validators.required]   // It must not be empty (Validators.required).
+      }),
+      city: new FormControl('', {    // This FormControl is for the city field. 
+        validators: [Validators.required]   // It must not be empty (Validators.required).
+      }),
     }),
     role: new FormControl<'student' | 'teacher' | 'employee' | 'founder' | 'other'>('student', {  // This FormControl is for the role select field. 
       // The role field is a dropdown where users can select from options like "student", "teacher", "employee", "founder", or "other". 

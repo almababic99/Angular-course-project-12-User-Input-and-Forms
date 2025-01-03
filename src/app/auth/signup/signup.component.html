@@ -10,7 +10,8 @@
     <!-- The email input field is linked to the email control in the form from signup.component.ts using formControlName="email". -->
   </div>
 
-  <div class="control-row">
+  <div class="control-row" formGroupName="passwords">
+    <!-- The formGroupName="passwords" binds the password-related fields to a specific FormGroup named "passwords" from signup.component.ts -->
     <div class="control">
       <label for="password">Password</label>
       <input
@@ -46,7 +47,8 @@
       </div>
     </div>
 
-    <fieldset>
+    <fieldset formGroupName="address">
+      <!-- The formGroupName="address" binds the address-related fields to a specific FormGroup named "address" from signup.component.ts -->
       <legend>Your Address</legend>
 
       <div class="control-row">
